@@ -42,6 +42,14 @@ class label : public view<UILabel> {
   void set_text_alignment(UITextAlignment alignment) {
     get_objc_ui().textAlignment = alignment;
   }
+  
+  int get_number_of_lines() const {
+    return get_objc_ui().numberOfLines;
+  }
+  
+  void set_number_of_lines(int lines) {
+    get_objc_ui().numberOfLines = lines;
+  }
 };
 }}
 
