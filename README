@@ -2,6 +2,7 @@ saten C++ Libraries
 
 ライブラリ概要
 現状ではiPhoneアプリ開発で脱Obj-Cを目指すライブラリです。
+誠に遺憾ではありますが、ヘッダオンリーライブラリではありません。
 
 コンパイラ対応
 Apple clang version 3.0以降のみ、
