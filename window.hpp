@@ -1,12 +1,12 @@
 #ifndef SATEN_WINDOW_HPP_
 #define SATEN_WINDOW_HPP_
-#import "ui.hpp"
+#import "view.hpp"
 
 namespace saten { namespace ui {
-class window : public ui<UIWindow> {
+class window : public view<UIWindow> {
 public:
   explicit window(const CGRect &rect)
-      : ui([[UIWindow alloc] initWithFrame:rect]) {}
+      : view([[UIWindow alloc] initWithFrame:rect]) {}
   
   void make_key_and_visible() {
     [get_objc_ui() makeKeyAndVisible];

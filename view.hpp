@@ -1,16 +1,55 @@
 #ifndef SATEN_VIEW_HPP_
 #define SATEN_VIEW_HPP_
+#import <UIKit/UIKit.h>
+#import <boost/noncopyable.hpp>
+#import "color.hpp"
 #import "objective_ptr.hpp"
-#import "ui.hpp"
 
 namespace saten { namespace ui {
-class view : public ui<UIView> {
+template <typename View = UIView>
+class view : boost::noncopyable {
  public:
-  explicit view(UIView *view)
-      : ui(view) {}
+  explicit view(View *v) : view_(v) {} 
+  
+  explicit view(const saten::objective_ptr<View> &view)
+      : view_(view) {}
   
   explicit view(const CGRect &rect)
-      : ui(saten::make_objective([[UIView alloc] initWithFrame:rect])) {}
+      : view_(make_objective([[UIView alloc] initWithFrame:rect])) {}
+    
+  virtual ~view() = default;
+    
+  template <typename View_>
+  void add_subview(const view<View_> &subview) {
+    [view_.get() addSubview:subview.get_objc_ui()];
+  }
+    
+  CGRect get_frame() const {
+    view_.get().frame;
+  }
+    
+  void set_frame(const CGRect &frame) {
+    view_.get().frame = frame;
+  }
+    
+  CGRect get_bounds() const {
+    view_.get().bounds;
+  }
+    
+  void set_bounds(const CGRect &bounds) {
+    view_.get().bounds = bounds;
+  }
+    
+  void set_background_color(const color &c) {
+    view_.get().backgroundColor = c.get_ui_color();
+  }
+    
+  View *get_objc_ui() const {
+    return view_.get();
+  }
+    
+ private:
+  saten::objective_ptr<View> view_;
 };
 }}
 

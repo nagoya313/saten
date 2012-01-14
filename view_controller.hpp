@@ -14,8 +14,8 @@ class view_controller : boost::noncopyable {
     controller_.get().controller = this; 
   }
   
-  std::unique_ptr<view> get_view() const {
-    return std::unique_ptr<view>(new view(controller_.get().view));
+  std::unique_ptr<view<>> get_view() const {
+    return std::unique_ptr<view<>>(new view<>(controller_.get().view));
   }
   
  private:
