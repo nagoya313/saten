@@ -15,7 +15,7 @@ class view : boost::noncopyable {
       : view_(view) {}
   
   explicit view(const CGRect &rect)
-      : view_(make_objective([[UIView alloc] initWithFrame:rect])) {}
+      : view_(make_objective([[View alloc] initWithFrame:rect])) {}
     
   virtual ~view() = default;
     
@@ -25,7 +25,7 @@ class view : boost::noncopyable {
   }
     
   CGRect get_frame() const {
-    view_.get().frame;
+    return view_.get().frame;
   }
     
   void set_frame(const CGRect &frame) {
@@ -33,11 +33,23 @@ class view : boost::noncopyable {
   }
     
   CGRect get_bounds() const {
-    view_.get().bounds;
+    return view_.get().bounds;
   }
     
   void set_bounds(const CGRect &bounds) {
     view_.get().bounds = bounds;
+  }
+  
+  CGRect get_center() const {
+    return view_.get().center;
+  }
+  
+  void set_center(const CGRect &center) {
+    view_.get().center = center;
+  }
+  
+  color get_background_color() const {
+    return color(view_.get().backgroundColor);
   }
     
   void set_background_color(const color &c) {
