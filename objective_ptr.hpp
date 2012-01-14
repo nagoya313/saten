@@ -1,5 +1,6 @@
 #ifndef SATEN_OBJECTIVE_PTR_HPP_
 #define SATEN_OBJECTIVE_PTR_HPP_
+#import <Foundation/Foundation.h>
 #import <boost/assert.hpp>
 #import <boost/intrusive_ptr.hpp>
 
