@@ -68,6 +68,10 @@ class view : boost::noncopyable {
   View *get_objc_ui() const {
     return view_.get();
   }
+  
+  void size_to_fit() {
+    [view_.get() sizeToFit];
+  }
     
  private:
   saten::objective_ptr<View> view_;
