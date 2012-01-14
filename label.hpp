@@ -34,6 +34,14 @@ class label : public view<UILabel> {
   void set_text_color(const color &c) {
     get_objc_ui().textColor = c.get_ui_color();
   }
+  
+  UITextAlignment get_text_alignment() const {
+    return get_objc_ui().textAlignment;
+  }
+  
+  void set_text_alignment(UITextAlignment alignment) {
+    get_objc_ui().textAlignment = alignment;
+  }
 };
 }}
 
