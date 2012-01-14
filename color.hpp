@@ -8,6 +8,12 @@ class color {
  public:
   explicit color(UIColor *c) : color_(c) {}
   
+  color(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
+      : color_(make_objective([[UIColor alloc] initWithRed:red
+                                                     green:green
+                                                      blue:blue
+                                                     alpha:alpha])) {}
+  
   static color create_white() {
     return color([UIColor whiteColor]);
   }
