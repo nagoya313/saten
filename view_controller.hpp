@@ -7,6 +7,8 @@
 #import "view.hpp"
 
 namespace saten { namespace ui {
+class view_controller_accessor;
+  
 class view_controller : boost::noncopyable {
  public:
   view_controller() 
@@ -21,6 +23,8 @@ class view_controller : boost::noncopyable {
   }
   
  protected:
+  friend class view_controller_accessor;
+  
   virtual void load_view() {}
   virtual void view_will_appear(bool animated) {}
   virtual void view_did_appear(bool animated) {}
