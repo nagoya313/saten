@@ -23,6 +23,15 @@ class view : boost::noncopyable {
   void add_subview(const view<View_> &subview) {
     [view_.get() addSubview:subview.get_objc_ui()];
   }
+  
+  template <typename View_>
+  void bring_subview_to_front(const view<View_> &subview) {
+    [view_.get() bringSubviewToFront:subview.get_objc_ui()];
+  }
+  
+  void remove_from_super_view() {
+    [view_.get() removeFromSuperView];
+  }
     
   CGRect get_frame() const {
     return view_.get().frame;
