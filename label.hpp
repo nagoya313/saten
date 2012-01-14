@@ -6,9 +6,9 @@
 namespace saten { namespace ui {
 class label : public view<UILabel> {
  public:  
-  explicit label(NSString *text, const CGRect &frame)
-      : view(frame) {
-    get_objc_ui().text = text;
+  static boost::shared_ptr<label> create(NSString *text, 
+                                         const CGRect &frame) {
+    return boost::make_shared<label>(text, frame);
   }
   
   NSString *get_text() const {
@@ -50,6 +50,15 @@ class label : public view<UILabel> {
   void set_number_of_lines(int lines) {
     get_objc_ui().numberOfLines = lines;
   }
+  
+ protected:
+  explicit label(NSString *text, const CGRect &frame)
+      : view(frame) {
+    get_objc_ui().text = text;
+  } 
+  
+  template<class T, class Arg1, class... Args>
+  friend boost::shared_ptr< T > boost::make_shared( Arg1 && arg1, Args && ... args);
 };
 }}
 

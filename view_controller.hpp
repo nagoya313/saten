@@ -1,7 +1,8 @@
 #ifndef SATEN_VIEW_CONTROLLER_HPP_
 #define SATEN_VIEW_CONTROLLER_HPP_
-#import <memory>
+#import <boost/make_shared.hpp>
 #import <boost/noncopyable.hpp>
+#import <boost/shared_ptr.hpp>
 #import "STNViewController.h"
 #import "objective_ptr.hpp"
 #import "view.hpp"
@@ -18,8 +19,9 @@ class view_controller : boost::noncopyable {
   
   virtual ~view_controller() = default;
   
-  std::unique_ptr<view<>> get_view() const {
-    return std::unique_ptr<view<>>(new view<>(controller_.get().view));
+  boost::shared_ptr<view<>> get_view() const {
+    auto v = controller_.get().view;
+    return boost::make_shared<view<>>(v);
   }
   
  protected:
