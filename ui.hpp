@@ -12,6 +12,8 @@ class ui : boost::noncopyable {
   explicit ui(const saten::objective_ptr<View> &view)
       : view_(view) {}
   
+  virtual ~ui() = default;
+  
   template <typename View_>
   void add_subview(const ui<View_> &subview) {
     [view_.get() addSubview:subview.get_objc_ui()];
