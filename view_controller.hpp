@@ -20,6 +20,7 @@ class view_controller : boost::noncopyable {
     return std::unique_ptr<view<>>(new view<>(controller_.get().view));
   }
   
+ protected:
   virtual void load_view() {}
   virtual void view_will_appear(bool animated) {}
   virtual void view_did_appear(bool animated) {}
