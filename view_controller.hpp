@@ -14,9 +14,17 @@ class view_controller : boost::noncopyable {
     controller_.get().controller = this; 
   }
   
+  virtual ~view_controller() = default;
+  
   std::unique_ptr<view<>> get_view() const {
     return std::unique_ptr<view<>>(new view<>(controller_.get().view));
   }
+  
+  virtual void load_view() {}
+  virtual void view_will_appear(bool animated) {}
+  virtual void view_did_appear(bool animated) {}
+  virtual void view_will_disappear(bool animated) {}
+  virtual void view_did_disappear(bool animated) {}
   
  private:
   saten::objective_ptr<STNViewController> controller_;
