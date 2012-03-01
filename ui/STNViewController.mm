@@ -1,5 +1,6 @@
-#import "STNViewController.h"
-#import "view_controller.hpp"
+#import <saten/ui/STNViewController.h>
+#import <boost/assert.hpp>
+#import <saten/ui/view_controller.hpp>
 
 namespace saten { namespace ui {
 class view_controller_accessor {
@@ -32,33 +33,42 @@ class view_controller_accessor {
 };
 }}
 
+using accessor = saten::ui::view_controller_accessor;
+
 @implementation STNViewController
 
-@synthesize controller = controller_;
+- (id)initWithController:(saten::ui::view_controller *)controller {
+  if (self = [super init]) {
+    BOOST_ASSERT(controller);
+    controller_ = controller;
+  }
+  return self;
+}
 
 - (void)loadView {
+  BOOST_ASSERT(controller_);
   [super loadView];
-  saten::ui::view_controller_accessor(controller_).load_view();
+  accessor(controller_).load_view();
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  saten::ui::view_controller_accessor(controller_).view_will_appear(animated);
+  BOOST_ASSERT(controller_);
+  accessor(controller_).view_will_appear(animated);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  saten::ui::view_controller_accessor(controller_).view_did_appear(animated);
+  BOOST_ASSERT(controller_);
+  accessor(controller_).view_did_appear(animated);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  saten::ui::view_controller_accessor(controller_).view_will_disappear(animated);
-  [super viewWillDisappear:animated];
+  BOOST_ASSERT(controller_);
+  accessor(controller_).view_will_disappear(animated);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-  saten::ui::view_controller_accessor(controller_).view_did_disappear(animated);
-  [super viewDidDisappear:animated];
+  BOOST_ASSERT(controller_);
+  accessor(controller_).view_did_disappear(animated);
 }
 
 @end

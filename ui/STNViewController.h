@@ -9,6 +9,6 @@ class view_controller;
   saten::ui::view_controller *controller_;
 }
 
-@property(assign, nonatomic) saten::ui::view_controller *controller;
+- (id)initWithController:(saten::ui::view_controller *)controller;
 
 @end
